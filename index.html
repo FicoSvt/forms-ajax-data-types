@@ -61,56 +61,113 @@ http://jsfiddle.net Online code editor and playground. Register.
 </pre>
 
 
-<h2>BOM - Browser object model</h2>
+<h2>Forms</h2>
 
 <pre>
-All browsers are split into different parts (objects) that can be accessed trough Javascript. These parts are known as the Browser Object Model (BOM)
-Main object is Window and it’s at the top of the hierarchy. All global JavaScript objects, methods, and properties automatically become members of the window object.
-These allow you do things like, redirecting the user to a different web page, get the size of the browser window, access all the HTML elements on the page and, again, a whole lot more besides.
-Example of relations between objects in BOM
 
-<img src="assets/bom.png" />
+
+HTML Forms are one of the main points of interaction between a user and a web site or application. They allow users to send data to the web site. Most of the time that data is sent to the web server, but the web page can also intercept it to use it on its own.
+An HTML Form is made of one or more widgets. Those widgets can be text fields (single line or multiline), select boxes, buttons, checkboxes, or radio buttons. Most of the time, those widgets are paired with a label that describes their purpose.
+
+In javascript, you can access forms through DOM (Document Object Model) object document on two ways. First is to use property forms.
 
 </pre>
 
-<h3>window.document</h3>
-
-<pre>
-Returns the Document object for the window.
-When an HTML document is loaded into a web browser, it becomes a document object.
-The document object is the root node of the HTML document and the "owner" of all other nodes:
-(element nodes, text nodes, attribute nodes, and comment nodes).
-The document object provides properties and methods to access all node objects, from within JavaScript.
-</pre>
 <form>
 <textarea>
-	
-//console.log(document);
+
+    var theForm = document.forms[0];
 
 </textarea>
 <button type="button">Reset</button><button type="submit">Run</button>
 </form>
 
-<h3>window.navigator</h3>
 <pre>
-The navigator object contains information about the browser, like the userAgent, product etc.
+
+What's the problem with this approach?
+Directly in situations when adding another forms to the page.
+
+Second approach is to use getElementById() method.
+
 </pre>
+
 <form>
 <textarea>
-	
-console.log(navigator.userAgent);
-//console.log(navigator.appName);
-//console.log(navigator.appCodeName);
-//console.log(navigator.appVersion);
-//console.log(navigator.platform);
 
-/* for (var i = 0; i < navigator.plugins.length; i++) {
-	console.log(navigator.plugins[i].description);
-} */
+var theForm = document.getElementById("testForm");
 
 </textarea>
 <button type="button">Reset</button><button type="submit">Run</button>
 </form>
+
+<h3>Forms and events</h3>
+
+<pre>
+Main event for handling forms is submit, while method is onsubmit. We can also attach event directly or we can use DOM level 2 event listeners.
+</pre>
+<form>
+<textarea>
+
+var theForm = document.getElementById("testForm");
+
+theForm.onsubmit=formHandler();
+
+theForm.addEventListener("submit",formHandler());
+
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+<h3>Form elements</h3>
+<pre>
+Main form elements are <input>, <select>, <textarea> and <button>.
+The most important form element is the <input> element.
+The <input> element can vary in many ways, depending on the type attribute.
+
+The <select> element defines a drop-down list.
+
+The <textarea> element defines a multi-line input field (a text area).
+
+The <button> element defines a clickable button.
+</pre>
+
+<h3>Form processing</h3>
+
+<pre>
+As soon as we have configured and prepared our form elements on the client side, we need to handle data on the server side too. In our examples we'll use PHP.
+</pre>
+<form>
+<textarea>
+    <form action="/my-handling-form-page" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="user_name" />
+        </div>
+        <div>
+            <label for="mail">E-mail:</label>
+            <input type="email" id="mail" name="user_email" />
+        </div>
+        <div>
+            <label for="msg">Message:</label>
+            <textarea id="msg" name="user_message"></textarea>
+        </div>
+
+        <div class="button">
+            <button type="submit">Send your message</button>
+        </div>
+    </form>
+</textarea>
+</form>
+<h3>Element select</h3>
+<pre>
+List of properties that can be accesed through javascript
+
+disabled, form, length, options, selectedIndex, type
+
+Select options are added to options array. Each one is an object with several properties. For validation checks interesting properties are selected, value and text.
+<a href="https://jsfiddle.net/FicoSv/sd85m3on/">Select element example</a>
+</pre>
+
 
 <h3>window.location</h3>
 <pre>The location object contains information about the current URL.
