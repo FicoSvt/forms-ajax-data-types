@@ -64,15 +64,11 @@ http://jsfiddle.net Online code editor and playground. Register.
 <h2>Forms</h2>
 
 <pre>
-
-
 HTML Forms are one of the main points of interaction between a user and a web site or application. They allow users to send data to the web site. Most of the time that data is sent to the web server, but the web page can also intercept it to use it on its own.
 An HTML Form is made of one or more widgets. Those widgets can be text fields (single line or multiline), select boxes, buttons, checkboxes, or radio buttons. Most of the time, those widgets are paired with a label that describes their purpose.
 
 In javascript, you can access forms through DOM (Document Object Model) object document on two ways. First is to use property forms.
-
 </pre>
-
 <form>
 <textarea>
 
@@ -81,16 +77,12 @@ In javascript, you can access forms through DOM (Document Object Model) object d
 </textarea>
 <button type="button">Reset</button><button type="submit">Run</button>
 </form>
-
 <pre>
-
 What's the problem with this approach?
 Directly in situations when adding another forms to the page.
 
 Second approach is to use getElementById() method.
-
 </pre>
-
 <form>
 <textarea>
 
@@ -101,34 +93,30 @@ var theForm = document.getElementById("testForm");
 </form>
 
 <h3>Forms and events</h3>
-
 <pre>
 Main event for handling forms is submit, while method is onsubmit. We can also attach event directly or we can use DOM level 2 event listeners.
 </pre>
 <form>
 <textarea>
-
 var theForm = document.getElementById("testForm");
 
 theForm.onsubmit=formHandler();
 
 theForm.addEventListener("submit",formHandler());
-
 </textarea>
 <button type="button">Reset</button><button type="submit">Run</button>
 </form>
-
 <h3>Form elements</h3>
 <pre>
-Main form elements are <input>, <select>, <textarea> and <button>.
-The most important form element is the <input> element.
-The <input> element can vary in many ways, depending on the type attribute.
+Main form elements are input, select, textarea and button.
+The most important form element is the input element.
+The input element can vary in many ways, depending on the type attribute.
 
-The <select> element defines a drop-down list.
+The select element defines a drop-down list.
 
-The <textarea> element defines a multi-line input field (a text area).
+The textarea element defines a multi-line input field (a text area).
 
-The <button> element defines a clickable button.
+The button element defines a clickable button.
 </pre>
 
 <h3>Form processing</h3>
@@ -136,11 +124,6 @@ The <button> element defines a clickable button.
 <pre>
 As soon as we have configured and prepared our form elements on the client side, we need to handle data on the server side too. In our examples we'll use PHP.
 </pre>
-<form>
-<textarea>
-   
-</textarea>
-</form>
 <h3>Element select</h3>
 <pre>
 List of properties that can be accesed through javascript
