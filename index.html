@@ -51,7 +51,7 @@ http://jsfiddle.net Online code editor and playground. Register.
 HTML Forms are one of the main points of interaction between a user and a web site or application. They allow users to send data to the web site. Most of the time that data is sent to the web server, but the web page can also intercept it to use it on its own.
 An HTML Form is made of one or more widgets. Those widgets can be text fields (single line or multiline), select boxes, buttons, checkboxes, or radio buttons. Most of the time, those widgets are paired with a label that describes their purpose.
 
-In javascript, you can access forms through DOM (Document Object Model) object document on two ways. First is to use property forms.
+In javascript, you can access forms through DOM (Document Object Model) object document in two ways. First is to use property forms.
 </pre>
 <form>
 <textarea>
@@ -63,9 +63,10 @@ In javascript, you can access forms through DOM (Document Object Model) object d
 </form>
 <pre>
 What's the problem with this approach?
-Directly in situations when adding another forms to the page.
+The problem occurs in situations when adding additional forms to the page.
 
-Second approach is to use getElementById() method.
+Second approach is to use getElementById() method which is far more precise.
+
 </pre>
 <form>
 <textarea>
@@ -76,9 +77,52 @@ var theForm = document.getElementById("testForm");
 <button type="button">Reset</button><button type="submit">Run</button>
 </form>
 
+<h3>Form elements</h3>
+
+<pre>
+Main form elements are input, select, textarea, and button.
+Most common used form element is the input element.
+Select element defines a drop-down list.
+Textarea element defines a multi-line input field (a text area).
+Button element defines a clickable button.
+</pre>
+
+<h3>Element select</h3>
+
+<pre>
+List of properties that can be accesed through javascript:
+
+disabled, form, length, options, selectedIndex, type
+
+Select options are added to options array. Each one is an object with several properties. For validation checks,
+properties are selected, value and text.
+
+https://jsfiddle.net/FicoSv/sd85m3on/
+
+</pre>
+
+<h3>Element input</h3>
+
+<pre>
+
+The input element can vary in many ways, depending on the attribute type.
+
+List of all available input types
+http://www.w3schools.com/tags/att_input_type.asp
+
+Radio button examples
+https://jsfiddle.net/FicoSv/p9xwkofk/
+
+Checkbox examples
+https://jsfiddle.net/FicoSv/hczbfe84/
+
+</pre>
+
 <h3>Forms and events</h3>
 <pre>
-Main event for handling forms is submit, while method is onsubmit. We can also attach event directly or we can use DOM level 2 event listeners.
+Main event for handling forms is submit. We can also attach event directly to html element or we can use DOM level 2 event listeners.
+Besides submit, we can manipulate with focus, blur, change and select events.
+
 </pre>
 <form>
 <textarea>
@@ -90,32 +134,36 @@ theForm.addEventListener("submit",formHandler());
 </textarea>
 <button type="button">Reset</button><button type="submit">Run</button>
 </form>
-<h3>Form elements</h3>
+
 <pre>
-Main form elements are input, select, textarea and button.
-The most important form element is the input element.
-The input element can vary in many ways, depending on the type attribute.
 
-The select element defines a drop-down list.
+The blur event is triggered when the element loses focus. This event is commonly used with input elements, but can be
+used with other HTML elements. An element can lose focus when the mouse is clicked outside of the element or through
+keyboard commands, such as, tabbing out of an input element.
 
-The textarea element defines a multi-line input field (a text area).
+Blur is different from a change event because the blur event fires when focus is lost. The change event will fire only
+when a change is made to the element.
 
-The button element defines a clickable button.
+The select event fires when text is selected in an input element that's type is set to text or a textarea element.
+
+The submit event attaches to the form and not an element on the form.
+
+Let's inspect some of the form events on few real examples:
+https://jsfiddle.net/FicoSv/yo6bbeze/
+
 </pre>
 
-<h3>Form processing</h3>
+<h3>Form processing and validation</h3>
 
 <pre>
-As soon as we have configured and prepared our form elements on the client side, we need to handle data on the server side too. In our examples we'll use PHP.
-</pre>
-<h3>Element select</h3>
-<pre>
-List of properties that can be accesed through javascript
 
-disabled, form, length, options, selectedIndex, type
+Forms validation on the client-side is essential — it saves time and bandwidth, and gives you more options to point
+out to the user where they’ve gone wrong in filling out the form.
 
-Select options are added to options array. Each one is an object with several properties. For validation checks interesting properties are selected, value and text.
-https://jsfiddle.net/FicoSv/sd85m3on/
+As soon as we've configured and prepared our form elements on the client side, we need to handle data on the server side too. In our final example we'll use PHP.
+
+https://jsfiddle.net/FicoSv/0rmdtcLf/
+
 </pre>
 
 <h3>Resources</h3>
