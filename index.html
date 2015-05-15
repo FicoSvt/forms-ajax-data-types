@@ -166,6 +166,116 @@ https://jsfiddle.net/FicoSv/0rmdtcLf/
 
 </pre>
 
+<h2>AJAX - Asynchronous JavaScript and XML</h2>
+
+<pre>
+AJAX is a technique for creating fast and dynamic web pages.
+AJAX allows web pages to be updated asynchronously by exchanging small amounts of data with the server behind the
+scenes. This means that it is possible to update parts of a web page, without reloading the whole page.
+Classic web pages, (which do not use AJAX) must reload the entire page if the content should change.
+</pre>
+
+<h3>How AJAX works?</h3>
+
+<pre>
+<img src="assets/ajax.png" alt="Ajax Example" />
+
+In order to make an HTTP request to the server using JavaScript, you need an instance of a class that provides this
+functionality. This is where XMLHttpRequest comes in. Such a class was originally introduced in Internet Explorer as an
+ActiveX object called XMLHTTP. Then, Mozilla, Safari and other browsers followed, implementing an XMLHttpRequest class
+that supports the methods and properties of Microsoft's original ActiveX object.
+
+Cross-browser instance (object) of the required class:
+</pre>
+
+<form>
+<textarea>
+var httpRequest;
+if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+    httpRequest = new XMLHttpRequest();
+} else if (window.ActiveXObject) { // IE 6 and older
+    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+}
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+<pre>
+At this stage, you just need to tell the HTTP request object which JavaScript function will handle processing the
+response. This is done by setting the onreadystatechange property of the object. We need to check for the state of the
+request. If the state has the value of 4, that means that the full server response has been received and it's OK for
+you to continue processing it.
+
+0 (uninitialized)
+1 (loading)
+2 (loaded)
+3 (interactive)
+4 (complete)
+
+The next thing to check is the response code of the HTTP server response. We differentiate between a successful or
+unsuccessful AJAX call by checking for a  200 OK response code.
+
+Status codes definition list
+
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
+</pre>
+
+<form>
+<textarea>
+httpRequest.onreadystatechange = function(){
+// process the server response
+    if (httpRequest.readyState === 4) {
+        // everything is good, the response is received
+        if (httpRequest.status === 200) {
+        // good!
+        alert(httpRequest.responseText);
+        } else {
+        // there was a problem with the request,
+        // for example the response may contain a 404 (Not Found)
+        // or 500 (Internal Server Error) response code
+        }
+    } else {
+        // still not ready
+    }
+};
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+<pre>
+Make the request using open() and send() methods.
+
+The first parameter of the call to open() is the HTTP request method – GET, POST, HEAD or any other method you want to
+use and that is supported by your server. Keep the method capitalized as per the HTTP standard; otherwise some browsers
+(like Firefox) might not process the request. For more information on the possible HTTP request methods you can check
+the W3C specs.
+
+The second parameter is the URL of the page you're requesting. As a security feature, you cannot call
+pages on 3rd-party domains. Be sure to use the exact domain name on all of your pages or you will get a
+"permission denied" error when you call open(). A common pitfall is accessing your site by domain.tld, but attempting
+to call pages with www.domain.tld. If you really need to send a request to another domain, see HTTP access control.
+
+The optional third parameter sets whether the request is asynchronous. If TRUE (the default), the execution of the
+JavaScript function will continue while the response of the server has not yet arrived. This is the A in AJAX.
+
+The parameter to the send() method can be any data you want to send to the server if POST-ing the request. Form data
+should be sent in a format that the server can parse easily. This can be as a query string or in several other formats,
+including JSON, SOAP, etc.
+
+</pre>
+
+<form>
+<textarea>
+    httpRequest.open('GET', 'http://www.example.org/some.file', true);
+    httpRequest.send(null);
+</textarea>
+<button type="button">Reset</button><button type="submit">Run</button>
+</form>
+
+<pre>
+    Let's check one real example.
+</pre>
 <h3>Resources</h3>
 <pre>
 
