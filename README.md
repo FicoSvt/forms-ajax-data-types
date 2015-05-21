@@ -1,4 +1,4 @@
-# BOM DOM Events
+# FORMS, AJAX, Data types
 
 http://ficosvt.github.io/forms-ajax-data-types/
 
